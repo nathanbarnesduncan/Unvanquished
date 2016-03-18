@@ -1293,8 +1293,7 @@ GLShader_generic::GLShader_generic( GLShaderManager *manager ) :
 	GLCompileMacro_USE_VERTEX_SPRITE( this ),
 	GLCompileMacro_USE_TCGEN_ENVIRONMENT( this ),
 	GLCompileMacro_USE_TCGEN_LIGHTMAP( this ),
-	GLCompileMacro_USE_DEPTH_FADE( this ),
-	GLCompileMacro_USE_SHADER_LIGHTS( this )
+	GLCompileMacro_USE_DEPTH_FADE( this )
 {
 }
 
@@ -1332,7 +1331,6 @@ GLShader_lightMapping::GLShader_lightMapping( GLShaderManager *manager ) :
 	GLCompileMacro_USE_NORMAL_MAPPING( this ),
 	GLCompileMacro_USE_PARALLAX_MAPPING( this ),
 	GLCompileMacro_USE_GLOW_MAPPING( this ),
-	GLCompileMacro_USE_SHADER_LIGHTS( this ),
 	GLCompileMacro_USE_PHYSICAL_SHADING( this )
 {
 }
@@ -1391,7 +1389,6 @@ GLShader_vertexLighting_DBS_entity::GLShader_vertexLighting_DBS_entity( GLShader
 	GLCompileMacro_USE_PARALLAX_MAPPING( this ),
 	GLCompileMacro_USE_REFLECTIVE_SPECULAR( this ),
 	GLCompileMacro_USE_GLOW_MAPPING( this ),
-	GLCompileMacro_USE_SHADER_LIGHTS( this ),
 	GLCompileMacro_USE_PHYSICAL_SHADING( this )
 {
 }
@@ -1452,7 +1449,6 @@ GLShader_vertexLighting_DBS_world::GLShader_vertexLighting_DBS_world( GLShaderMa
 	GLCompileMacro_USE_NORMAL_MAPPING( this ),
 	GLCompileMacro_USE_PARALLAX_MAPPING( this ),
 	GLCompileMacro_USE_GLOW_MAPPING( this ),
-	GLCompileMacro_USE_SHADER_LIGHTS( this ),
 	GLCompileMacro_USE_PHYSICAL_SHADING( this )
 {
 }

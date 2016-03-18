@@ -606,12 +606,7 @@ static void Render_generic( int stage )
 		gl_genericShader->DisableMacro_USE_DEPTH_FADE();
 	}
 
-	if( backEnd.refdef.numShaderLights > 0 ) {
-		gl_genericShader->EnableMacro_USE_SHADER_LIGHTS();
-		GL_BindToTMU( 8, tr.lighttileRenderImage );
-	} else {
-		gl_genericShader->DisableMacro_USE_SHADER_LIGHTS();
-	}
+	GL_BindToTMU( 8, tr.lighttileRenderImage );
 
 	if( tess.surfaceShader->autoSpriteMode ) {
 		gl_genericShader->EnableVertexSprite();
@@ -746,12 +741,7 @@ static void Render_vertexLighting_DBS_entity( int stage )
 
 	tess.vboVertexSprite = false;
 
-	if( backEnd.refdef.numShaderLights > 0 ) {
-		gl_vertexLightingShader_DBS_entity->EnableMacro_USE_SHADER_LIGHTS();
-		GL_BindToTMU( 8, tr.lighttileRenderImage );
-	} else {
-		gl_vertexLightingShader_DBS_entity->DisableMacro_USE_SHADER_LIGHTS();
-	}
+	GL_BindToTMU( 8, tr.lighttileRenderImage );
 
 	gl_vertexLightingShader_DBS_entity->SetNormalMapping( normalMapping );
 	gl_vertexLightingShader_DBS_entity->SetParallaxMapping( normalMapping && r_parallaxMapping->integer && tess.surfaceShader->parallax );
@@ -969,12 +959,7 @@ static void Render_vertexLighting_DBS_world( int stage )
 	bool glowMapping = ( pStage->bundle[ TB_GLOWMAP ].image[ 0 ] != nullptr );
 
 	// choose right shader program ----------------------------------
-	if( backEnd.refdef.numShaderLights > 0 ) {
-		gl_vertexLightingShader_DBS_world->EnableMacro_USE_SHADER_LIGHTS();
-		GL_BindToTMU( 8, tr.lighttileRenderImage );
-	} else {
-		gl_vertexLightingShader_DBS_world->DisableMacro_USE_SHADER_LIGHTS();
-	}
+	GL_BindToTMU( 8, tr.lighttileRenderImage );
 
 	gl_vertexLightingShader_DBS_world->SetNormalMapping( normalMapping );
 	gl_vertexLightingShader_DBS_world->SetParallaxMapping( normalMapping && r_parallaxMapping->integer && tess.surfaceShader->parallax );
@@ -1172,12 +1157,7 @@ static void Render_lightMapping( int stage, bool asColorMap, bool normalMapping 
 	}
 
 	// choose right shader program ----------------------------------
-	if( backEnd.refdef.numShaderLights > 0 ) {
-		gl_lightMappingShader->EnableMacro_USE_SHADER_LIGHTS();
-		GL_BindToTMU( 8, tr.lighttileRenderImage );
-	} else {
-		gl_lightMappingShader->DisableMacro_USE_SHADER_LIGHTS();
-	}
+	GL_BindToTMU( 8, tr.lighttileRenderImage );
 
 	gl_lightMappingShader->SetNormalMapping( normalMapping );
 	gl_lightMappingShader->SetParallaxMapping( normalMapping && r_parallaxMapping->integer && tess.surfaceShader->parallax );
