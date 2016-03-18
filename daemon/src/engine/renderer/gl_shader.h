@@ -785,7 +785,6 @@ protected:
 	  USE_VERTEX_SPRITE,
 	  USE_TCGEN_ENVIRONMENT,
 	  USE_TCGEN_LIGHTMAP,
-	  USE_NORMAL_MAPPING,
 	  USE_PARALLAX_MAPPING,
 	  USE_REFLECTIVE_SPECULAR,
 	  USE_SHADOWING,
@@ -1073,53 +1072,6 @@ public:
 	}
 };
 
-class GLCompileMacro_USE_NORMAL_MAPPING :
-	GLCompileMacro
-{
-public:
-	GLCompileMacro_USE_NORMAL_MAPPING( GLShader *shader ) :
-		GLCompileMacro( shader )
-	{
-	}
-
-	const char *GetName() const
-	{
-		return "USE_NORMAL_MAPPING";
-	}
-
-	EGLCompileMacro GetType() const
-	{
-		return EGLCompileMacro::USE_NORMAL_MAPPING;
-	}
-
-	uint32_t        GetRequiredVertexAttributes() const
-	{
-		return ATTR_QTANGENT;
-	}
-
-	void EnableNormalMapping()
-	{
-		EnableMacro();
-	}
-
-	void DisableNormalMapping()
-	{
-		DisableMacro();
-	}
-
-	void SetNormalMapping( bool enable )
-	{
-		if ( enable )
-		{
-			EnableMacro();
-		}
-		else
-		{
-			DisableMacro();
-		}
-	}
-};
-
 class GLCompileMacro_USE_PARALLAX_MAPPING :
 	GLCompileMacro
 {
@@ -1138,8 +1090,6 @@ public:
 	{
 		return EGLCompileMacro::USE_PARALLAX_MAPPING;
 	}
-
-	bool MissesRequiredMacros( size_t permutation, const std::vector< GLCompileMacro * > &macros ) const;
 
 	void EnableParallaxMapping()
 	{
@@ -1182,8 +1132,6 @@ public:
 	{
 		return EGLCompileMacro::USE_REFLECTIVE_SPECULAR;
 	}
-
-	bool MissesRequiredMacros( size_t permutation, const std::vector< GLCompileMacro * > &macros ) const;
 
 	void EnableReflectiveSpecular()
 	{
@@ -1352,8 +1300,6 @@ public:
 	{
 		return USE_PHYSICAL_SHADING;
 	}
-
-	bool MissesRequiredMacros( size_t permutation, const std::vector< GLCompileMacro * > &macros ) const;
 
 	void EnableMacro_USE_PHYSICAL_SHADING()
 	{
@@ -2349,7 +2295,6 @@ class GLShader_lightMapping :
 	public u_numLights,
 	public u_Lights,
 	public GLDeformStage,
-	public GLCompileMacro_USE_NORMAL_MAPPING,
 	public GLCompileMacro_USE_PARALLAX_MAPPING,
 	public GLCompileMacro_USE_PHYSICAL_SHADING
 {
@@ -2383,7 +2328,6 @@ class GLShader_vertexLighting_DBS_entity :
 	public GLDeformStage,
 	public GLCompileMacro_USE_VERTEX_SKINNING,
 	public GLCompileMacro_USE_VERTEX_ANIMATION,
-	public GLCompileMacro_USE_NORMAL_MAPPING,
 	public GLCompileMacro_USE_PARALLAX_MAPPING,
 	public GLCompileMacro_USE_REFLECTIVE_SPECULAR,
 	public GLCompileMacro_USE_PHYSICAL_SHADING
@@ -2416,7 +2360,6 @@ class GLShader_vertexLighting_DBS_world :
 	public u_numLights,
 	public u_Lights,
 	public GLDeformStage,
-	public GLCompileMacro_USE_NORMAL_MAPPING,
 	public GLCompileMacro_USE_PARALLAX_MAPPING,
 	public GLCompileMacro_USE_PHYSICAL_SHADING
 {
@@ -2454,7 +2397,6 @@ class GLShader_forwardLighting_omniXYZ :
 	public GLDeformStage,
 	public GLCompileMacro_USE_VERTEX_SKINNING,
 	public GLCompileMacro_USE_VERTEX_ANIMATION,
-	public GLCompileMacro_USE_NORMAL_MAPPING,
 	public GLCompileMacro_USE_PARALLAX_MAPPING,
 	public GLCompileMacro_USE_SHADOWING //,
 {
@@ -2493,7 +2435,6 @@ class GLShader_forwardLighting_projXYZ :
 	public GLDeformStage,
 	public GLCompileMacro_USE_VERTEX_SKINNING,
 	public GLCompileMacro_USE_VERTEX_ANIMATION,
-	public GLCompileMacro_USE_NORMAL_MAPPING,
 	public GLCompileMacro_USE_PARALLAX_MAPPING,
 	public GLCompileMacro_USE_SHADOWING //,
 {
@@ -2534,7 +2475,6 @@ class GLShader_forwardLighting_directionalSun :
 	public GLDeformStage,
 	public GLCompileMacro_USE_VERTEX_SKINNING,
 	public GLCompileMacro_USE_VERTEX_ANIMATION,
-	public GLCompileMacro_USE_NORMAL_MAPPING,
 	public GLCompileMacro_USE_PARALLAX_MAPPING,
 	public GLCompileMacro_USE_SHADOWING //,
 {
@@ -2579,8 +2519,7 @@ class GLShader_reflection :
 	public u_VertexInterpolation,
 	public GLDeformStage,
 	public GLCompileMacro_USE_VERTEX_SKINNING,
-	public GLCompileMacro_USE_VERTEX_ANIMATION,
-	public GLCompileMacro_USE_NORMAL_MAPPING //,
+	public GLCompileMacro_USE_VERTEX_ANIMATION
 {
 public:
 	GLShader_reflection( GLShaderManager *manager );
